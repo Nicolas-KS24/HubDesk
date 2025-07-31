@@ -44,7 +44,23 @@
   </footer>
 
 
+  <h1 id="mensagem"></h1>
+
   <script>
+    const user = JSON.parse(localStorage.getItem("usuario"));
+
+  if (user) {
+    const mensagem = {
+      Administrador: "Você tem controle total.",
+      Colaborador: "Você pode adicionar e comentar.",
+      Cliente: "Você pode visualizar e comentar."
+    };
+
+    document.getElementById("mensagem").textContent =
+      `Olá, ${user.nome} (${user.permissao}) – ${mensagem[user.permissao]}`;
+  } else {
+    window.location.href = "login.html";
+  }
     function alternarTema() {
       document.body.classList.toggle("dark-mode");
     }

@@ -9,6 +9,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Servir arquivos estáticos da pasta 'public'
+const path = require('path');
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+
+// Rota para / para redirecionar ao login
+app.get('/', (req, res) => {
+  res.redirect('/HubDesk/pages/login.html');
+});
+
 //Registro 
 app.post("/register", async (req, res) => {
     const { nome, email, senha, permissao } = req.body;
